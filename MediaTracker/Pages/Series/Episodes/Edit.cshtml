@@ -1,5 +1,5 @@
 ﻿@page
-@model MediaTracker.Pages.Movies.EditModel
+@model MediaTracker.Pages.Series.Episodes.EditModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -7,7 +7,7 @@
 
 <h1>Edit</h1>
 
-<h4>Movie</h4>
+<h4>Episode</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -21,7 +21,9 @@
             </div>
             <partial name="_MediaGenreSelectPartial" model="Model" />
             <div class="form-group">
-                <textarea asp-for="Media.Review"></textarea>
+                <label asp-for="Media.Review" class="control-label"></label>
+                <input asp-for="Media.Review" class="form-control" />
+                <span asp-validation-for="Media.Review" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

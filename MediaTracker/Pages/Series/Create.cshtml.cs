@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MediaTracker.Data;
 using MediaTracker.Models;
 
-namespace MediaTracker.Pages.Movies {
-    public class CreateModel : InspectMediaModel<Movie> {
-        private readonly MovieContext _context;
+namespace MediaTracker.Pages.Series {
+    public class CreateModel : InspectMediaModel<Models.Series> {
+        private readonly SeriesContext _context;
 
-        public CreateModel(MovieContext context) {
+        public CreateModel(SeriesContext context) {
             _context = context;
         }
 
@@ -26,7 +26,7 @@ namespace MediaTracker.Pages.Movies {
                 return Page();
             }
 
-            _context.Movie.Add(Media);
+            _context.Series.Add(Media);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

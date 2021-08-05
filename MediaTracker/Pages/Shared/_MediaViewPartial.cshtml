@@ -1,0 +1,17 @@
+@model Models.IViewMediaModel
+
+<form asp-action="Index" method="get">
+    Title: <input type="text" asp-for="Name" />
+    <select asp-for="Genre" asp-items="Model.Genres" class="form-select form-select-sm">
+        <option value="">All</option>
+    </select>
+    <input type="submit" value="Filter" class="btn btn-primary" />
+</form>
+
+<div class="container">
+    <div id="grid" class="row">
+        @foreach (var item in Model.Media) {
+            <a asp-page="./Details" asp-route-id="@item.ID" class="btn btn-primary btn-item" style="margin: 0.5em;">@item.Name</a>
+        }
+    </div>
+</div>

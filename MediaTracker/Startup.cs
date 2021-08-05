@@ -33,6 +33,12 @@ namespace MediaTracker {
 
     services.AddDbContext<MovieContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("MovieContext")));
+
+    services.AddDbContext<SeriesContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("SeriesContext")));
+
+    services.AddDbContext<EpisodeContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("EpisodeContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

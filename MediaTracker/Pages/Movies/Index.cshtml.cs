@@ -10,42 +10,14 @@ using MediaTracker.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MediaTracker.Pages.Movies {
-    public class IndexModel : PageModel {
-        private readonly MediaTracker.Data.MovieContext _context;
+    public class IndexModel : ViewMediaModel<MovieContext, Movie> {
+        private readonly MovieContext _context;
 
-        public IndexModel(MediaTracker.Data.MovieContext context) {
+        public IndexModel(MovieContext context) {
             _context = context;
         }
 
-        public IList<Movie> Movie { get; set; }
-
-        #region Filter
-        [BindProperty(SupportsGet = true)]
-        public string Name { get; set; }
-        public SelectList Genres { get; set; }
-        [BindProperty(SupportsGet = true)]
-        public string Genre { get; set; }
-        #endregion
-
-        public async Task OnGetAsync() {
-            Genres = new SelectList(Media.GetValues(), Genre);
-
-            IQueryable<Movie> movies = _context.Movie;
-
-            if (!string.IsNullOrWhiteSpace(Name)) {
-                movies = from m in movies
-                         where m.Name.Contains(Name)
-                         select m;
-            }
-
-            if (!string.IsNullOrWhiteSpace(Genre)) {
-                movies = from m in movies
-                         where m.Genre == Genre
-                         select m;
-            }
-
-            Movie = await movies.ToListAsync();
-        }
+        public override IQueryable<Movie> ContextDatabase => _context.Movie;
 
     }
 }

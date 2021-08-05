@@ -1,0 +1,48 @@
+﻿@page
+@model MediaTracker.Pages.Series.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Series</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Series.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Series.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Series.Genre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Series.Genre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Series.Review)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Series.Review)
+        </dd>
+        <dd class="col-sm-10">
+            <div>
+                <label>Episodes</label>
+                <a asp-page="./Episodes/Create" asp-route-id="@Model.Series.ID" class="btn btn-primary btn-sm">+</a>
+                <div class="list-group">
+                    @foreach (Models.Episode episode in Model.Series.Episodes) {
+                        <a asp-page="./Episodes/Index" asp-route-id="@episode.ID" class="list-group-item list-group-item-action">@episode.Name</a>
+                    }
+                </div>
+            </div>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Series.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

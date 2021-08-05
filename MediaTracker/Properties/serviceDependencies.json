@@ -7,6 +7,14 @@
     "mssql2": {
       "type": "mssql",
       "connectionId": "MovieContext"
+    },
+    "mssql3": {
+      "type": "mssql",
+      "connectionId": "SeriesContext"
+    },
+    "mssql4": {
+      "type": "mssql",
+      "connectionId": "EpisodeContext"
     }
   }
 }

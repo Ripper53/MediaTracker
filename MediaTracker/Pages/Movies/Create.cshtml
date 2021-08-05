@@ -14,16 +14,13 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Movie.Name" class="control-label"></label>
-                <input asp-for="Movie.Name" class="form-control" />
-                <span asp-validation-for="Movie.Name" class="text-danger"></span>
+                <label asp-for="Media.Name" class="control-label"></label>
+                <input asp-for="Media.Name" class="form-control" />
+                <span asp-validation-for="Media.Name" class="text-danger"></span>
             </div>
+            <partial name="_MediaGenreSelectPartial" model="Model" />
             <div class="form-group">
-                <select asp-for="Movie.Genre" asp-items="Model.Genres">
-                </select>
-            </div>
-            <div class="form-group">
-                <textarea asp-for="Movie.Review"></textarea>
+                <textarea asp-for="Media.Review"></textarea>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

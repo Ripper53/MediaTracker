@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using MediaTracker.Data;
 using MediaTracker.Models;
 
-namespace MediaTracker.Pages.Movies {
-    public class EditModel : InspectMediaModel<Movie> {
-        private readonly MovieContext _context;
+namespace MediaTracker.Pages.Series.Episodes {
+    public class EditModel : InspectMediaModel<Episode> {
+        private readonly EpisodeContext _context;
 
-        public EditModel(MovieContext context) {
+        public EditModel(EpisodeContext context) {
             _context = context;
         }
 
@@ -22,12 +22,11 @@ namespace MediaTracker.Pages.Movies {
                 return NotFound();
             }
 
-            Media = await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
+            Media = await _context.Episode.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Media == null) {
                 return NotFound();
             }
-
             return Page();
         }
 
@@ -43,7 +42,7 @@ namespace MediaTracker.Pages.Movies {
             try {
                 await _context.SaveChangesAsync();
             } catch (DbUpdateConcurrencyException) {
-                if (!MovieExists(Media.ID)) {
+                if (!EpisodeExists(Media.ID)) {
                     return NotFound();
                 } else {
                     throw;
@@ -53,8 +52,8 @@ namespace MediaTracker.Pages.Movies {
             return RedirectToPage("./Index");
         }
 
-        private bool MovieExists(int id) {
-            return _context.Movie.Any(e => e.ID == id);
+        private bool EpisodeExists(int id) {
+            return _context.Episode.Any(e => e.ID == id);
         }
 
     }
